@@ -16,7 +16,7 @@ class User(Base):
     first_name = Column(String(250))
     last_name = Column(String(250), nullable=False)
     email = Column(String(250))
-    favorites = Column(Integer, ForeignKey('favorites.id'))
+    
 
 class Planets(Base):
     __tablename__ = 'planets'
@@ -49,6 +49,7 @@ class Favotites(Base):
     id = Column(Integer, primary_key=True)
     favorites_id_planets = Column(Integer, ForeignKey('planets.id'))
     favorites_id_characters = Column(Integer, ForeignKey('characters.id'))
+    user_id = Column(Integer, ForeignKey('user.id'))
     person = relationship(User)
 
     def to_dict(self):
